@@ -57,12 +57,9 @@ export default function Index() {
 
         <Text style={styles.subtitle}>วางแผนออกรถฉบับมือโปร</Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleStart}
-          disabled={loading}
-        >
-          {loading ? (
+        {/* Loading */}
+        {loading ? (
+          <View style={styles.loadingContainer}>
             <Animated.View
               style={[
                 styles.spinner,
@@ -71,10 +68,12 @@ export default function Index() {
                 },
               ]}
             />
-          ) : (
+          </View>
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={handleStart}>
             <Text style={styles.buttonText}>เริ่มต้นใช้งาน</Text>
-          )}
-        </TouchableOpacity>
+          </TouchableOpacity>
+        )}
       </View>
     </ImageBackground>
   );
@@ -93,15 +92,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
-  icon: {
-    fontSize: 80,
-    marginBottom: 20,
-  },
-
   title: {
     color: "#FFFFFF",
     fontSize: 34,
     fontFamily: "Kanit_700Bold",
+    textAlign: "center",
   },
 
   subtitle: {
@@ -110,6 +105,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 40,
     fontFamily: "Kanit_400Regular",
+    textAlign: "center",
   },
 
   button: {
@@ -129,9 +125,15 @@ const styles = StyleSheet.create({
     fontFamily: "Kanit_700Bold",
   },
 
+  loadingContainer: {
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   spinner: {
-    width: 28,
-    height: 28,
+    width: 34,
+    height: 34,
     borderWidth: 4,
     borderColor: "#FFFFFF",
     borderTopColor: "transparent",
